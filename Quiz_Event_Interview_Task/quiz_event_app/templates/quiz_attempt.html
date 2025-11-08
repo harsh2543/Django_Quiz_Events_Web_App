@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ quiz.title }} - Quiz</title>
+  <link rel="stylesheet" href="{% static 'event.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{% url 'index' %}" class="logo">Quiz & Event Portal</a>
+      <div class="nav-links">
+        <a href="{% url 'index' %}" class="active">Home</a>
+        <a href="{% url 'quiz_list' %}" class="active">Quizzes</a>
+        <a href="{% url 'events' %}">Events</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container quiz-attempt">
+    <h1>{{ quiz.title }}</h1>
+    <p>{{ quiz.description }}</p>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <div>
+        <label>Enter your name:</label><br>
+        <input type="text" name="user_name" placeholder="Your name" required>
+      </div>
+
+      {% for question in questions %}
+        <div class="question-box">
+          <h3>{{ forloop.counter }}. {{ question.text }}</h3>
+
+          <div class="answers">
+            {% for ans in question.answer_set.all %}
+              <label>
+                <input type="radio" name="{{ question.id }}" value="{{ ans.id }}">
+                {{ ans.text }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+
+      <button type="submit">Submit Quiz</button>
+    </form>
+  </div>
+</body>
+</html>

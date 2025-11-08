@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | Quiz & Event Portal</title>
+  <link rel="stylesheet" href="{% static 'event.css' %}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Quiz & Event Portal</a>
+      <div class="nav-links">
+        <a href="{% url 'quiz_list' %}">Quizzes</a>
+        <a href="{% url 'events' %}">Events</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container">
+    <h1>Welcome to the Ultimate Quiz & Event Platform</h1>
+    <p class="subtitle">Test your knowledge and explore upcoming events!</p>
+    <div class="buttons">
+      <a href="{% url 'quiz_list' %}" class="btn">Explore Quizzes</a>
+      <a href="{% url 'events' %}" class="btn secondary">View Events</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Quiz & Event Portal. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

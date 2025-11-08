@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Quizzes</title>
+  <link rel="stylesheet" href="{% static 'event.css' %}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{% url 'index' %}" class="logo">Quiz & Event Portal</a>
+      <div class="nav-links">
+        <a href="{% url 'index' %}" class="active">Home</a>
+        <a href="{% url 'events' %}">Events</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-card">
+    <h1 class="page-title">Available Quizzes</h1>
+    <ul class="quiz-list">
+      {% for quiz in quizzes %}
+        <li>
+          <h2>{{ quiz.title }}</h2>
+          <p>{{ quiz.description|default:"No description available." }}</p>
+          <a href="{% url 'quiz_attempt' quiz.id %}" class="btn">Start Quiz</a>
+        </li>
+      {% empty %}
+        <p class="no-data">No quizzes available.</p>
+      {% endfor %}
+    </ul>
+  </div>
+
+</body>
+</html>

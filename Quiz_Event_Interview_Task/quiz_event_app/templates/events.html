@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Events</title>
+  <link rel="stylesheet" href="{% static 'event.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{% url 'index' %}" class="logo">Quiz & Event Portal</a>
+      <div class="nav-links">
+        <a href="{% url 'quiz_list' %}" class="active">Quizzes</a>
+        <a href="{% url 'index' %}">Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Upcoming Events</h1>
+
+    {% for event in events %}
+      <div class="event-card">
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.description }}</p>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+      </div>
+    {% empty %}
+      <p>No events available right now.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>

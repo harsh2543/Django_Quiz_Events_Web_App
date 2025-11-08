@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Result</title>
+  <link rel="stylesheet" href="{% static 'event.css' %}">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{% url 'index' %}" class="logo">Quiz & Event Portal</a>
+      <div class="nav-links">
+        <a href="{% url 'index' %}" class="active">Home</a>
+        <a href="{% url 'quiz_list' %}" class="active">Quizzes</a>
+        <a href="{% url 'events' %}">Events</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container result">
+    <h1>Quiz Result</h1>
+    <p>Name: <strong>{{ submission.user_name }}</strong></p>
+    <p>Score: <strong>{{ submission.score }}</strong></p>
+    <a href="{% url 'quiz_list' %}" class="btn">Back to Quizzes</a>
+  </div>
+</body>
+</html>
